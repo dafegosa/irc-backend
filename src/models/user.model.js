@@ -10,6 +10,17 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+    validate: {
+      async validator(email) {
+        try {
+          const user = await models.User.findOne({ email })
+          return !user
+        } catch (err) {
+          return false
+        }
+      },
+      message: 'Correo ya ha sido registrado',
+    },
   },
 })
 
