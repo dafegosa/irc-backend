@@ -5,6 +5,7 @@ const User = require('../models/user.model')
 
 module.exports = {
   async signUp(req, res) {
+    console.log(req.body)
     const { password } = req.body
     const encPassword = await bcrypt.hash(password, 8)
     try {
@@ -18,21 +19,23 @@ module.exports = {
           expiresIn: 60 * 60 * 24,
         }
       )
-      res
-        .status(201)
-        .json({ message: 'Usuario registrado exitosamente', user, token })
+      res.status(201).json({
+        message: 'Usuario registrado exitosamente',
+        token,
+        nickName: user.nickName,
+      })
     } catch (err) {
       res.status(400).json({ message: err.message })
     }
   },
-  async signin(req, res) {
+  async signIn(req, res) {
     try {
       const { email, password } = req.body
       const user = await User.findOne({ email })
       if (!user) {
         throw new Error('Usuario no registrado')
       }
-      const isValid = await bcrypt.compare(password, User.password)
+      const isValid = await bcrypt.compare(password, user.password)
       if (!isValid) {
         throw new Error('Usuario o contraseña incorrectos')
       }
@@ -46,7 +49,7 @@ module.exports = {
           expiresIn: 60 * 60 * 24,
         }
       )
-      res.status(200).json({ token, name: admin.name })
+      res.status(200).json({ token, nickName: user.nickName })
     } catch (err) {
       res.status(401).json({ message: 'Usuario o contraseña invalida' })
     }

@@ -6,6 +6,7 @@ const path = require('path')
 const fs = require('fs')
 const morgan = require('morgan')
 const userRouter = require('./routes/user')
+const msgRouter = require('./routes/message')
 
 const app = express()
 app.use(bodyparser.urlencoded({ extended: true }))
@@ -14,4 +15,5 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 app.use('/user', userRouter)
+app.use('/msg', msgRouter)
 module.exports = app
