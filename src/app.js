@@ -9,6 +9,7 @@ const userRouter = require('./routes/user')
 const msgRouter = require('./routes/message')
 
 const app = express()
+
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(cors())
 app.use(express.json())
