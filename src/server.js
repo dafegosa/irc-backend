@@ -3,7 +3,7 @@ const app = require('./app')
 const SocketIO = require('socket.io')
 const http = require('http')
 
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 const server = http.createServer(app)
 const io = SocketIO(server, {
   cors: {
