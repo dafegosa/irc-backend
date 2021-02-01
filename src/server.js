@@ -12,6 +12,8 @@ const io = SocketIO(server, {
     methods: ['GET', 'POST'],
   },
 })
+
+console.log('ok')
 connect()
 io.on('connection', (socket) => {
   socket.emit('welcome', { message: 'New User Connected' })
