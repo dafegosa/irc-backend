@@ -1,4 +1,5 @@
 const { connect, disconnect } = require('./db')
+const dotenv = require('dotenv').config()
 const app = require('./app')
 const SocketIO = require('socket.io')
 const http = require('http')
