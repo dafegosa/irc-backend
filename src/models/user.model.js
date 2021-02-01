@@ -7,10 +7,8 @@ const userSchema = new Schema({
     required: true,
     validate: {
       async validator(email) {
-        console.log('VALIDATOR', email)
         try {
           const user = await models.User.findOne({ email })
-          console.log('USER VALID', user)
           return !user
         } catch (err) {
           return false

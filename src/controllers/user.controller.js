@@ -5,7 +5,6 @@ const User = require('../models/user.model')
 
 module.exports = {
   async signUp(req, res) {
-    console.log(req.body)
     const { password } = req.body
     const encPassword = await bcrypt.hash(password, 8)
     try {
