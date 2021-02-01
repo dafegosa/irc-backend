@@ -7,7 +7,7 @@ const port = process.env.PORT
 const server = http.createServer(app)
 const io = SocketIO(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://irc.dafegosa.vercel.app',
     methods: ['GET', 'POST'],
   },
 })
