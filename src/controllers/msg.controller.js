@@ -11,6 +11,17 @@ module.exports = {
       res.status(400).json({ message: 'Something went wrong!', data: err })
     }
   },
+  async list(req, res) {
+    try {
+      const messages = await Message.find()
+      res.status(200).json({
+        message: 'Data found',
+        messages,
+      })
+    } catch (err) {
+      res.status(400).json({ message: 'Email not found', data: err })
+    }
+  },
   // async list(req, res) {
   //   try {
   //     const thisId = req.body.thisId

@@ -8,9 +8,10 @@ const msgSchema = new Schema({
   },
   body: {
     type: String,
-    required: true,
+    required: false,
   },
   date: { type: String, required: true },
+  img: { type: String, required: false },
 })
 
 const Message = model('Message', msgSchema)
